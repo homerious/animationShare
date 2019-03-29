@@ -157,3 +157,11 @@ function rotateDom(dom, duration) {
 
 
 *Homer 2019.3.29*
+
+*参考：*
+
+[*Tasks, microtasks, queues and schedules*](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)
+
+[*CSS3 动画*](http://www.w3school.com.cn/css3/css3_animation.asp)
+
+[*window.requestAnimationFrame*](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame)
