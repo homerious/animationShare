@@ -149,7 +149,7 @@ function rotateDom(dom, duration) {
         }, 5000)
     }, 2000)
 ```
-以上就是rAF的两个最主要的用法，关于rAF编写动画的更深入一层的写法，将在下一篇文章[《rAF的好伙伴补帧算法TWEEN》](../TWEENjs/TWEENjs.md)中进行详细描述。
+以上就是rAF的两个最主要的用法，关于rAF编写动画的更深入一层的写法，将在下一篇文章[《rAF的好伙伴补间算法TWEEN》](../TWEENjs/README.md)中进行详细描述。
 
 ## 结语
 
