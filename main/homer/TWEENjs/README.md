@@ -34,7 +34,7 @@ function linear(b, c, d, t) {
 ```javascript
 /**
 * @param dom 要操作的dom元素
-* @param positionArr 位置变换信息数组，第一项是开始位置，第二项是借结束位置
+* @param positionArr 位置变换信息数组，第一项是开始位置，第二项是结束位置
 * @param duration 动画持续时间
 * 
 */
@@ -47,7 +47,7 @@ function linear(b, c, d, t) {
               startTime = timestamp;
           }
           const progress = startTime - timestamp;
-          const nowPosition = linear(beginPostion, endPosition, duration, progress); // 引用补间算法来获取当前时间的位置状态
+          const nowPosition = linear(beginPostion, endPosition - beginPostion, duration, progress); // 引用补间算法来获取当前时间的位置状态
           dom.style.transform = 'translateX(' + nowPosition + ')';
           if (progress <= duration) {
               requestAnimationFrame(step);
