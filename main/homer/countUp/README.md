@@ -11,7 +11,7 @@
 先把这个动画分析一下，可以发现它其实就是随着时间的变化不停的修改dom的`innerText`来达到目的。但是稍微仔细想想，那我们该如何去决定什么时候显示什么数字呢？
 别担心，有TWEEN算法，我们就可以为所欲为。下面我们来看一下代码：
 
-```javascript
+```JavaScript
 /**
 * @param dom 需要操作的dom
 * @param startnum 开始的显示数字
@@ -43,7 +43,7 @@ function countUp(dom, startnum, endnum, duration) {
 ```
 最后调用这个函数就可以实现这个效果了
 
-```javascript
+```JavaScript
 const dom = document.getElementById('number');
 countUp(dom, 0, 7500, 5000);
 ```

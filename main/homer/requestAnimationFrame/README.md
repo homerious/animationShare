@@ -82,7 +82,7 @@ const finalLeftPostion = 200;
 function animateDom() {
   dom.style.left = (parseInt(dom.style.left, 10) + 5) + 'px';
   if (parseInt(dom.style.left, 10) < finalLeftPostion) {
-           requestAnimationFrame(animateDom);
+           requestAnimationFrame(animateDom); // 再次调用自身
   }
 }
 requestAnimationFrame(animateDom);
@@ -103,13 +103,13 @@ rAF函数本身会返回一个id值，这个值可以用来作为`cancelAnimatio
 * @param duration 动画所要持续的时间
 */
 function rotateDom(dom, duration) {
-    let startTime = 0;
+    let startTime = 0; // 用于存储动画开始的时间
     function stepAnimation (timestamp) {
       if (!startTime) {
-          startTime = timestamp;
+          startTime = timestamp; // 标记动画开始时间
       }
       dom.style.transform = 'rotate(' + parseInt(dom.style.transform.split('(')[1], 10) + 'deg)';
-      if (timestamp - startTime <= duration) {
+      if (timestamp - startTime <= duration) { // 判断动画是否结束
           requestAnimationFrame(stepAnimation);
       }
     }
@@ -126,25 +126,25 @@ function rotateDom(dom, duration) {
         let rAF = null;
         function stepAnimation() {
             dom.style.left = (parseInt(dom.style.left, 10) + 5) + 'px';
-            if (parseInt(dom.style.left, 10) <= 900) {
+            if (parseInt(dom.style.left, 10) <= 900) { // 判断动画是否结束： 是否到达距离左边900px的地方
                 rAF = requestAnimationFrame(stepAnimation)
             }
         }
         rAF = requestAnimationFrame(stepAnimation);
-        return {
-            abortAnimation() {
+        return { // 返回一个对象，包含了两个方法，用于中断动画和继续动画
+            abortAnimation() { // 中断动画
                 cancelAnimationFrame(rAF);
             },
-            resumeAnimation() {
+            resumeAnimation() { // 继续动画
                 requestAnimationFrame(stepAnimation);
             }
         }
     }
     const adom = document.getElementById('animation');
     const animateController = animationCanBeCanceled(adom);
-    setTimeout(() => {
+    setTimeout(() => { // 延时来试试中断动画功能
         animateController.abortAnimation();
-        setTimeout(() => {
+        setTimeout(() => { // 延时来试试继续动画功能
             animateController.resumeAnimation();
         }, 5000)
     }, 2000)
