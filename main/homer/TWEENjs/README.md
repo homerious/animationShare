@@ -64,7 +64,7 @@ function linear(b, c, d, t) {
 
 ### 二次幂算法 / Quadratic 
 
-easeIn / 淡入
+#### easeIn / 淡入
 
 ```javascript
 /**
@@ -80,11 +80,15 @@ function quadeaseIn(b, c, d, t) {
 ```
 算法的运动曲线如下：
 
-![quadease](./img/quadease.jpg)
+![quadease](./img/easeInQuad.png)
 
-其实就是一般的二次函数曲线图。但是我们从函数曲线图中也可以看到，这个算法为什么称为二次幂淡入算法。在此就不再做文字说明了。
+其实就是一般的二次函数曲线图。但是我们从函数曲线图中也可以看到，这个算法为什么称为二次幂淡入算法：横坐标为时间，纵坐标为状态量，一开始平缓的部分表示动画的变化是比较慢的，后面速度就变得稍快一点而且变化速度基本保持一致。后面将不会重复叙述。
 
-easeOut / 淡出
+下面是以小球的移动动画为例的演示
+
+![quadeasegif](./img/easeInQuad.gif)
+
+#### easeOut / 淡出
 
 ```javascript
 /**
@@ -94,11 +98,58 @@ easeOut / 淡出
 * @param t Number 当前的时间
 * @returns Number 当前的状态量
 */
-function quadeaseIn(b, c, d, t) {
+function quadeaseOut(b, c, d, t) {
  return -c *(t /= d)*(t-2) + b;
 }
 ```
 算法的运动曲线如下：
 
-![quadeaseout](./img/quadeaseout.png)
+![quadeaseout](./img/easeOutQuad.png)
+
+动画实例：
+
+![quadeasegif](./img/easeOutQuad.gif)
+
+#### easeInOut / 淡入淡出
+
+```javascript
+/**
+* @param b Number 开始状态量
+* @param c Number 变化状态量
+* @param d Number 持续的时间
+* @param t Number 当前的时间
+* @returns Number 当前的状态量
+*/
+function easeInOut(b, c, d, t) {
+    if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+    return -c / 2 * ((--t) * (t-2) - 1) + b;
+}
+```
+算法的运动曲线如下：
+
+![quadeaseout](./img/easeInOutQuad.png)
+
+动画实例：
+
+![quadeasegif](./img/easeInOutQuad.gif)
+
+由于算法很多，这里就不一一去详细介绍，更多算法可以参见：
+
+具体代码：[TWEEN.js](./TWEEN.js)
+
+演示效果： [张鑫旭的博客: 《Tween.js动画算法使用示意实例页面》](https://www.zhangxinxu.com/study/201612/how-to-use-tween-js.html)
+
+运动曲线&效果演示： [Robert Penner’s blog： 《easeing demo》(需要用到flash)](http://robertpenner.com/easing/easing_demo.html)
+
+## 结语
+
+有了TWEEN，我们就不需要担心使用rAF编写动画不知道如何去计算动画如何去缓动了。想要什么样的缓动效果就去调用对应的算法就可以了。
+
+*Homer 2019.4.10*
+
+*参考：*
+
+[*TWEEN.js*](https://github.com/zhangxinxu/Tween)
+
+[*JavaScript Tween算法及缓动效果*](http://www.cnblogs.com/cloudgamer/archive/2009/01/06/Tween.html)
 

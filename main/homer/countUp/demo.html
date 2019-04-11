@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>countUp demo</title>
+</head>
+<body>
+<div id="number"></div>
+<script type="text/javascript">
+    function countUp(dom, startnum, endnum, duration) {
+        dom.innerText = startnum;
+        let startTime = 0;
+        let progress;
+        function step(timestamp) {
+            if (!startTime) {
+                startTime = timestamp;
+            }
+            progress = timestamp - startTime;
+            dom.innerText = Math.ceil(easeOutQuad(startnum, endnum - startnum, duration, progress));
+
+            if (progress <= duration) {
+                requestAnimationFrame(step);
+            }
+        }
+        requestAnimationFrame(step);
+        function easeOutQuad(b, c, d, t) {
+            return -c *(t /= d)*(t-2) + b;
+        }
+    }
+    const dom = document.getElementById('number');
+    countUp(dom, 0, 7500, 5000);
+</script>
+</body>
+</html>
