@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+        .blackNumber {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            vertical-align:middle;
+        }
+        .redNumber {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            vertical-align:middle;
+
+        }
+    </style>
+</head>
+<body>
+
+<div style="font-size: 30px;margin-bottom: 50px;">
+    <span class="blackNumber"></span><span class="blackNumber"></span> ： <span class="redNumber"></span><span class="redNumber"></span>
+</div>
+<script>
+
+    const canvas = document.createElement('CANVAS');
+    canvas.height = (30 + 5) * 10;
+    canvas.width = 40;
+    const ctx = canvas.getContext('2d');
+    ctx.font = '30px Impact';
+    ctx.fillStyle = 'red';
+    for (let i = 0; i < 10; i++) {
+        ctx.fillText(i, 5, 30 + (i * 35));
+    }
+    const bgimgRed = canvas.toDataURL();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#000';
+    for (let i = 0; i < 10; i++) {
+        ctx.fillText(i, 5, 30 + (i * 35));
+    }
+    const bgimgblack = canvas.toDataURL();
+
+
+    const BlackNumber = document.querySelectorAll('.blackNumber');
+    const RedNumber = document.querySelectorAll('.redNumber');
+    BlackNumber.forEach((dom) => {
+        dom.style.backgroundImage = 'url(' + bgimgblack + ')';
+        dom.style.backgroundPosition = '0  0'
+    });
+    RedNumber.forEach((dom) => {
+        dom.style.backgroundImage = 'url(' + bgimgRed + ')';
+        dom.style.backgroundPosition = '0 0'
+    });
+    let cacheRed1 = 0;
+    let cacheRed2 = 0;
+    let cacheBlack1= 0;
+    let cacheBlack2 = 0;
+
+    function rAFPart(duration, callback) {
+        let startTime = 0;
+        function rolllingStep(timestamp) {
+            if (!startTime) {
+                startTime = timestamp;
+            }
+            const progress = timestamp - startTime;
+            callback(progress,duration);
+            if (progress <= duration) {
+                requestAnimationFrame(rolllingStep);
+            }
+        }
+        requestAnimationFrame(rolllingStep);
+    }
+    function Tween(t, b, c, d) {
+        if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+        return -c / 2 * ((--t) * (t - 2) - 1) + b;
+    }
+    function rolling() {
+        const cr1 = cacheRed1++;
+        const br1 = cacheBlack1++;
+        rAFPart(1000, (progress, duration) => {
+            const red1BgPos = Math.ceil(Tween(progress, cr1 * 35, 35, duration).toFixed(2));
+            const blk1BgPos = Math.ceil(Tween(progress, br1 * 35, 35, duration).toFixed(2));
+            BlackNumber[1].style.backgroundPosition = '0 -' + blk1BgPos + 'px';
+            RedNumber[1].style.backgroundPosition = '0 -' + red1BgPos + 'px';
+        });
+        if (cacheBlack1 >= (cacheBlack2 + 1) * 10 && cacheBlack2 < 9) {
+            const br2 = cacheBlack2++;
+            rAFPart(1000, (progress, duration) => {
+                const pos = Math.ceil(Tween(progress, br2 * 35, 35, duration).toFixed(2));
+                BlackNumber[0].style.backgroundPosition = '0 -' + pos + 'px';
+
+            });
+        }
+        if (cacheRed1 >= (cacheRed2 + 1) * 10) {
+            const cr2 = cacheRed2++;
+            rAFPart(1000, (progress, duration) => {
+                const pos = Math.ceil(Tween(progress, cr2 * 35, 35, duration).toFixed(2));
+                RedNumber[0].style.backgroundPosition = '0 -' + pos + 'px';
+
+            });
+        }
+        if (cacheBlack2 <= 9)
+            setTimeout(() => {
+                rolling();
+            }, 3000)
+
+    }
+    rolling();
+</script>
+</body>
+</html>
