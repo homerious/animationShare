@@ -169,6 +169,8 @@ function rolling() {
 
 ![effect.gif](./img/rolling.gif)
 
+*运行实例在这里：[demo.html](./demo.html)*
+
 *最后加料：* 在浏览器调试的时候发现了`background-position`的位置如果超过了图片大小浏览器就会去自动repeat来延长，也就是我上面的长350的数字图片，如果把`background-position`的高度设置为350px，浏览器就会显示repeat的图片的0px的位置作为背景，所以要做多圈轮转动画的朋友，知道该怎么做了吗？（斜眼笑）
 
 *最后的最后啰嗦一下：* 这个效果用来动效是没问题的，因为它不需要交互。但是需要交互情况下，这个效果就估计不适用了哦~~
