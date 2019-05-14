@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>staticDemo/静态颜色渐变代码示例</title>
+    <style>
+        .linear-bg{
+            background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+        }
+        .linear-border{
+            border: 30px solid ;
+            border-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%) 10;
+        }
+        .radial-bg{
+            background-image: radial-gradient(#08AEEA, #2AF598);
+        }
+    </style>
+</head>
+<body>
+<p style="text-align: center;">1.用css方式实现的渐变</p>
+<div class="linear-bg" style="width: 980px;height: 200px; margin: 20px auto;"></div>
+<div class="radial-bg" style="width: 980px;height: 200px; margin: 20px auto;"></div>
+<div class="linear-border" style="width: 920px;height: 200px; margin: 20px auto;"></div>
+</body>
+</html>
