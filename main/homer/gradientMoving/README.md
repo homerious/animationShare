@@ -1,4 +1,4 @@
-# 双色动态渐变的实现
+# 动态线性渐变的实现
 
 ![headimg](./img/headImg.png)
 
@@ -12,7 +12,7 @@
 线性渐变值指的是是沿着一根轴线（水平或垂直）改变颜色，从起点到终点颜色进行顺序渐变（从一边拉向另一边）；径向渐变则是从起点到终点颜色从内到外进行圆形渐变。（从中间向外拉）。
 
 在前端，我们也完全可以用代码实现这些色彩效果，而实现的方式有三种：css，canvas以及svg。
-我们先来看一下这三种方式的实现方法：
+今天我们只讨论线性渐变的实现方法。接下来，先来看一下这三种方式的实现方法：
 
 ### css
 我们首先来看用css怎么去实现一个简单的渐变效果：
@@ -20,9 +20,6 @@
 ```css
 .linear-gradient{
     background-image:linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
-}
-.radial-gradient{
-    background-image: radial-gradient(#08AEEA, #2AF598);
 }
 ```
 效果是这样的：
@@ -33,9 +30,7 @@ css主要使用两个函数`linear-gradient`(线性)和`radial-gradient`(径向)
 
 `linear-gradient([方向/角度], 颜色1 [位置/百分比], 颜色2 [位置/百分比], ...)`
 
-`radial-gradient([圆心位置/形状 边缘位置], 颜色1 [位置/百分比], 颜色2 [位置/百分比], ...)`
-
-生成的渐变图层会被视为css中的一个image(图片)对象——所以可以用在以下css属性上：
+生成的渐变图层会被视为css中的一个image(图片)对象，所以可以用在以下css属性上：
 * `background-image`
 * `list-style-image`
 * `border-image`

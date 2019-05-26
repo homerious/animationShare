@@ -15,27 +15,14 @@
             border: 30px solid ;
             border-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%) 10;
         }
-        .radial-bg{
-            /*background-image: radial-gradient(#08AEEA, #2AF598);*/
-            background:
-                    radial-gradient(circle at 50% 0,
-                    rgba(255,0,0,.5),
-                    rgba(255,0,0,0) 70.71%),
-                    radial-gradient(circle at 6.7% 75%,
-                    rgba(0,0,255,.5),
-                    rgba(0,0,255,0) 70.71%),
-                    radial-gradient(circle at 93.3% 75%,
-                    rgba(0,255,0,.5),
-                    rgba(0,255,0,0) 70.71%) beige;
-        }
     </style>
 </head>
 <body>
 <p style="text-align: center;">1.用css方式实现的渐变</p>
 <div class="linear-bg" style="width: 980px;height: 200px; margin: 20px auto;"></div>
-<div class="radial-bg" style="width: 980px;height: 200px; margin: 20px auto;"></div>
+<p>2.用css线性渐变实现的border-image</p>
 <div class="linear-border" style="width: 920px;height: 200px; margin: 20px auto;"></div>
-<p style="text-align: center;">2.用canvas方式实现的渐变</p>
+<p style="text-align: center;">3.用canvas方式实现的渐变</p>
 <div style="width: 980px;height: 200px; margin: 20px auto;">
     <canvas width="980" height="200" id="linear-canvas"></canvas>
 </div>
