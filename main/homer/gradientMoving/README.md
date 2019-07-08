@@ -181,4 +181,6 @@ canvas则规定比较死，为0到1之间的数。
 
 那三个停止点、四个停止点的效果呢？
 
+![exmaple1](./img/moreStop.png)
 
+顺便一提，如果是用重复循环的线性渐变效果，可以使用css的`repeating-linear-gradient`函数
